@@ -1,6 +1,6 @@
-package com.illuminateskills.foodapp
+package com.illuminateskills.foodapp.data
 
-import com.illuminateskills.foodapp.interfaces.FoodRecipesApi
+import com.illuminateskills.foodapp.data.network.interfaces.FoodRecipesApi
 import com.illuminateskills.foodapp.models.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject

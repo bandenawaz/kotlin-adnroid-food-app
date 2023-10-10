@@ -1,7 +1,7 @@
 package com.illuminateskills.foodapp.di
 
-import com.illuminateskills.foodapp.Constants
-import com.illuminateskills.foodapp.interfaces.FoodRecipesApi
+import com.illuminateskills.foodapp.util.Constants
+import com.illuminateskills.foodapp.data.network.interfaces.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object NetworkModule {
     }
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): FoodRecipesApi{
+    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
 
         return retrofit.create(FoodRecipesApi::class.java)
     }

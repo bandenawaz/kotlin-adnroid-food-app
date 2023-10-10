@@ -1,4 +1,4 @@
-package com.illuminateskills.foodapp
+package com.illuminateskills.foodapp.util
 
 class Constants {
 

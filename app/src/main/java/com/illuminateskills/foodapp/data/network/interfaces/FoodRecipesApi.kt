@@ -1,4 +1,4 @@
-package com.illuminateskills.foodapp.interfaces
+package com.illuminateskills.foodapp.data.network.interfaces
 
 import com.illuminateskills.foodapp.models.FoodRecipe
 import retrofit2.Response
