@@ -1,14 +1,11 @@
-package com.illuminateskills.foodapp
+package com.illuminateskills.foodapp.ui.fragments.recipes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.findFragment
-import androidx.recyclerview.widget.RecyclerView
-import com.facebook.shimmer.Shimmer
-import com.facebook.shimmer.ShimmerFrameLayout
+import com.illuminateskills.foodapp.R
 import com.todkars.shimmer.ShimmerRecyclerView
 
 class RecipiesFragment : Fragment() {

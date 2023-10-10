@@ -1,14 +1,14 @@
-package com.illuminateskills.foodapp
+package com.illuminateskills.foodapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.illuminateskills.foodapp.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +25,10 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.recipiesFragment, R.id.favouriteRecipiesFragment,
-                R.id.foodJokeFragment)
+            setOf(
+                R.id.recipiesFragment, R.id.favouriteRecipiesFragment,
+                R.id.foodJokeFragment
+            )
         )
 
        bottomNavigationView.setupWithNavController(navController)
