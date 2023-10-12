@@ -4,17 +4,19 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.illuminateskills.foodapp.data.Repository
 import com.illuminateskills.foodapp.models.FoodRecipe
 import com.illuminateskills.foodapp.util.NetworkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val repository: Repository,
     application: Application):
     AndroidViewModel(application) {
@@ -47,7 +49,7 @@ class MainViewModel @ViewModelInject constructor(
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
 
         when {
-            response.message().toString().contains("timout") -> {
+            response.message().toString().contains("timeout") -> {
                 return NetworkResult.Error("TimeOut")
             }
 
