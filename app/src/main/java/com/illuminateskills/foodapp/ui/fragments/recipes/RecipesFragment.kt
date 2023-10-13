@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.illuminateskills.foodapp.MainViewModel
 import com.illuminateskills.foodapp.R
 import com.illuminateskills.foodapp.adapters.RecipesAdapter
-import com.illuminateskills.foodapp.util.Constants
 import com.illuminateskills.foodapp.util.NetworkResult
+import com.illuminateskills.foodapp.viewmodels.MainViewModel
+import com.illuminateskills.foodapp.viewmodels.RecipesViewModel
 import com.todkars.shimmer.ShimmerRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +24,13 @@ class RecipesFragment : Fragment() {
     private lateinit var shimmerRecyclerView: ShimmerRecyclerView
     private val mAdapter by lazy { RecipesAdapter()}
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +38,6 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_recipies, container, false)
 
-        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         shimmerRecyclerView = mView.findViewById(R.id.shimmerRecyclerView)
         shimmerRecyclerView.showShimmer()
         setUpRecyclerView()
@@ -40,7 +46,7 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        mainViewModel.getRecipes(applyQueries())
+        mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner, Observer{ response ->
             when (response){
                 is NetworkResult.Success -> {
@@ -59,19 +65,7 @@ class RecipesFragment : Fragment() {
         })
     }
 
-    private fun applyQueries(): HashMap<String, String> {
 
-        val queries: HashMap<String, String> = HashMap()
-
-        queries["number"] = "50"
-        queries["apiKey"] = Constants.API_KEY
-        queries["type"] = "snack"
-        queries["diet"] = "vegan"
-        queries["addRecipeInformation"] = "true"
-        queries["fillIngredients"] = "true"
-
-        return queries
-    }
     private fun setUpRecyclerView(){
         shimmerRecyclerView.adapter = mAdapter
         shimmerRecyclerView.layoutManager = LinearLayoutManager(requireContext())

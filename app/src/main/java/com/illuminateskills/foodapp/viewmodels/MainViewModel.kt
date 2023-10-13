@@ -1,4 +1,4 @@
-package com.illuminateskills.foodapp
+package com.illuminateskills.foodapp.viewmodels
 
 import android.app.Application
 import android.content.Context
